@@ -27,6 +27,7 @@ const ImageViewer = ({
     <Dimmed>
       <CloseButton className={cx('close-button')} onClose={onClose} />
       <Swiper
+        className={cx('swiper-wrap')}
         navigation={true}
         modules={[Navigation]}
         // spaceBetween={20}
@@ -37,22 +38,24 @@ const ImageViewer = ({
         {images.map((image) => (
           <SwiperSlide key={image}>
             {/* <img src={image} alt="사진첩 이미지" /> */}
-            <picture>
-              <source
-                srcSet={generateImageUrl({
-                  fileName: image,
-                  format: 'webp',
-                })}
-                type="image/webp"
-              />
-              <img
-                srcSet={generateImageUrl({
-                  fileName: image,
-                  format: 'jpg',
-                })}
-                alt="사진첩 이미지"
-              />
-            </picture>
+            <div className={cx('swiper-slide-img')}>
+              <picture>
+                <source
+                  srcSet={generateImageUrl({
+                    fileName: image,
+                    format: 'webp',
+                  })}
+                  type="image/webp"
+                />
+                <img
+                  srcSet={generateImageUrl({
+                    fileName: image,
+                    format: 'jpg',
+                  })}
+                  alt="사진첩 이미지"
+                />
+              </picture>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
